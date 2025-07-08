@@ -1,0 +1,74 @@
+# Build directories
+build/
+cmake-build-*/
+out/
+bin/
+lib/
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Compiled files
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+Testing/
+compile_commands.json
+
+# Documentation
+docs/html/
+docs/latex/
+Doxyfile.bak
+
+# Test coverage
+*.gcda
+*.gcno
+*.gcov
+coverage/
+*.info
+
+# Debug files
+*.dSYM/
+*.pdb
+
+# Package files
+*.tar.gz
+*.zip
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Visual Studio
+.vs/
+*.vcxproj.user
+*.vcxproj.filters
+
+# CLion
+.idea/
+
+# Qt Creator
+*.pro.user
+
+# Python (for any helper scripts)
+__pycache__/
+*.pyc
+*.pyo 
