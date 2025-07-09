@@ -3,6 +3,10 @@
 #include <cstdint>
 #include <string>
 
+#ifdef _MSC_VER
+#include <intrin.h>
+#endif
+
 namespace chess {
 
 // Forward declarations
@@ -122,7 +126,13 @@ inline bool moreThanOne(Bitboard b) {
 }
 
 inline Square lsb(Bitboard b) {
+#ifdef _MSC_VER
+    unsigned long index;
+    _BitScanForward64(&index, b);
+    return static_cast<Square>(index);
+#else
     return __builtin_ctzll(b);
+#endif
 }
 
 inline Square popLsb(Bitboard& b) {
@@ -132,7 +142,11 @@ inline Square popLsb(Bitboard& b) {
 }
 
 inline int popcount(Bitboard b) {
+#ifdef _MSC_VER
+    return static_cast<int>(__popcnt64(b));
+#else
     return __builtin_popcountll(b);
+#endif
 }
 
 // Piece utilities

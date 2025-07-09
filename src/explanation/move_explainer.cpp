@@ -1,6 +1,7 @@
 #include "chess_analyzer/explanation/move_explainer.h"
 #include "chess_analyzer/core/move_generator.h"
 #include <sstream>
+#include <memory>
 #include <algorithm>
 
 namespace chess {

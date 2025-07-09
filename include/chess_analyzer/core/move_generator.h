@@ -4,6 +4,7 @@
 #include "chess_analyzer/core/position.h"
 #include "chess_analyzer/core/move.h"
 #include <vector>
+#include <memory>
 
 namespace chess {
 

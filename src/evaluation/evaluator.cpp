@@ -2,6 +2,7 @@
 #include "chess_analyzer/core/bitboard_attacks.h"
 #include <algorithm>
 #include <cmath>
+#include <memory>
 
 namespace chess {
 
@@ -294,7 +295,13 @@ public:
         Bitboard blackControl = 0;
         
         // Simplified - just count pieces attacking center
-        for (Square sq : {D4, E4, D5, E5}) {
+        const Square centerSquares[] = {
+            makeSquare(3, 3), // D4
+            makeSquare(4, 3), // E4
+            makeSquare(3, 4), // D5
+            makeSquare(4, 4)  // E5
+        };
+        for (Square sq : centerSquares) {
             if (pos.isSquareAttacked(sq, WHITE)) whiteControl |= squareBB(sq);
             if (pos.isSquareAttacked(sq, BLACK)) blackControl |= squareBB(sq);
         }
@@ -303,8 +310,10 @@ public:
         score -= popcount(blackControl) * 10;
         
         // Pieces on center squares
-        score += popcount(CENTER & pos.getColorBitboard(WHITE)) * 15;
-        score -= popcount(CENTER & pos.getColorBitboard(BLACK)) * 15;
+        Bitboard centerBitboard = squareBB(makeSquare(3, 3)) | squareBB(makeSquare(4, 3)) |
+                                 squareBB(makeSquare(3, 4)) | squareBB(makeSquare(4, 4));
+        score += popcount(centerBitboard & pos.getColorBitboard(WHITE)) * 15;
+        score -= popcount(centerBitboard & pos.getColorBitboard(BLACK)) * 15;
         
         return score;
     }

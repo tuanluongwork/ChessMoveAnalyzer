@@ -19,14 +19,14 @@ public:
     /**
      * @brief Default constructor creates a null move
      */
-    Move() : data(0) {}
+    constexpr Move() : data(0) {}
 
     /**
      * @brief Construct a normal move
      * @param from Source square
      * @param to Destination square
      */
-    Move(Square from, Square to) : data(encodeMove(from, to, NORMAL, 0)) {}
+    Move(Square from, Square to) : data(encodeMove(from, to, NORMAL, static_cast<PromotionType>(0))) {}
 
     /**
      * @brief Construct a special move (promotion, en passant, castling)
@@ -123,13 +123,13 @@ private:
     uint16_t data;
 
     static uint16_t encodeMove(Square from, Square to, MoveType type, PromotionType promotion) {
-        return from | (to << 6) | (promotion << 12) | (type << 14);
+        return static_cast<uint16_t>(from | (to << 6) | (promotion << 12) | (type << 14));
     }
 };
 
 /**
  * @brief Null move constant
  */
-constexpr Move NULL_MOVE{};
+inline const Move NULL_MOVE{};
 
 } // namespace chess 

@@ -3,6 +3,7 @@
 #include <sstream>
 #include <regex>
 #include <cctype>
+#include <memory>
 
 namespace chess {
 
@@ -23,8 +24,8 @@ public:
             if (line.empty()) break;
             
             if (line[0] == '[') {
-                // Parse header
-                std::regex headerRegex(R"(\[(\w+)\s+"([^"]+)"\])");
+                // Parse header - matches [Tag "Value"]
+                std::regex headerRegex("\\[(\\w+)\\s+\"([^\"]+)\"\\]");
                 std::smatch match;
                 if (std::regex_match(line, match, headerRegex)) {
                     game.headers[match[1]] = match[2];

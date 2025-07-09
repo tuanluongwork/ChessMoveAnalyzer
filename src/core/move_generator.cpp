@@ -1,6 +1,8 @@
 #include "chess_analyzer/core/move_generator.h"
 #include "chess_analyzer/core/bitboard_attacks.h"
 #include <algorithm>
+#include <memory>
+#include <iterator>
 
 namespace chess {
 
